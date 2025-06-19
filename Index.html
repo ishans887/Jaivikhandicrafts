@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Javik Handicraft Perfume Store</title>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<style>
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif;}
+html {scroll-behavior: smooth;}
+body {
+  min-height:100vh; display:flex; flex-direction:column;
+  background: linear-gradient(135deg, #fbe8d3, #f9d5e5);
+  padding-top:80px; overflow-x:hidden; color:#4a3c31;
+}
+.navbar {
+  position:fixed;width:100%;top:0;left:0;padding:10px 30px;height:80px;
+  background:rgba(171, 19, 19, 0.3);backdrop-filter:blur(12px);
+  display:flex;justify-content:space-between;align-items:center;z-index:999;
+}
+.logo img {
+  max-height:120px;  
+  width:auto;
+  border-radius:10px;
+}
+.nav-links {list-style:none;display:flex;gap:30px;}
+.nav-links li a {
+  color:#160101;text-decoration:none;font-size:18px;padding:10px 18px;
+  border-radius:20px;transition:0.4s;
+}
+.nav-links li a:hover {background:rgba(255,255,255,0.4);color:#000;}
+section {padding:60px 30px;text-align:center;}
+footer {
+  margin-top:auto;background:linear-gradient(135deg,#3a1c0f,#1a0d08);
+  color:#fdd9b5;padding:40px 20px;text-align:center;
+}
+.slider-container {
+  display:flex; width:90%; max-width:1500px; height:500px;
+  background:#fff; box-shadow:0 10px 25px rgba(0,0,0,0.2);
+  border-radius:20px; overflow:hidden; margin:20px auto;
+}
+.left-panel {width:20%;background:#f7a8c4;padding:20px;display:flex;flex-direction:column;gap:15px;}
+.thumb {cursor:pointer;border:2px solid transparent;border-radius:10px;transition:.3s;}
+.thumb:hover, .thumb.active {border-color:#fff;}
+.thumb img {width:100%;border-radius:10px;}
+.right-panel {width:80%;background:#fdd678;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px;gap:10px;}
+.right-panel img {width:100%;height:auto;transition:.5s;}
+.info {background:rgba(255,255,255,0.3);backdrop-filter:blur(8px);padding:15px;border-radius:10px;width:80%;}
+.info h2 {font-size:24px;color:#333;}
+.info p {font-size:14px;}
+.info span {display:block;margin:5px 0;font-size:18px;color:#222;}
+.info button {padding:8px 16px;background:#000;color:#fff;border:none;border-radius:20px;cursor:pointer;transition:0.3s;}
+.info button:hover {background:#333;}
+#about {background: #ffe0b2;}
+#testimonials {padding: 60px 30px;background: linear-gradient(135deg, #ffe0b2, #ffcc80);}
+#testimonials h2 {font-size:32px;color:#5d4037;margin-bottom:30px;}
+.testimonial-container {display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.testimonial-box {background:#fff;padding:20px;width:300px;border-radius:15px;box-shadow:0 8px 16px rgba(0,0,0,0.3);transition:transform 0.3s;}
+.testimonial-box:hover {transform:translateY(-10px);box-shadow:0 12px 24px rgba(0,0,0,0.4);}
+.testimonial-box p {font-style:italic;color:#555;margin-bottom:15px;}
+.testimonial-box h3 {color:#ff7b00;margin-bottom:5px;}
+.testimonial-box span {font-size:14px;color:#777;}
+#quick-inquiry {position: relative;padding: 60px 30px;background: #fff3e0;text-align: center;}
+.inquiry-container {position: relative;max-width: 600px;margin: 0 auto;padding: 40px;background: rgba(255, 255, 255, 0.7);border-radius: 15px;backdrop-filter: blur(5px);box-shadow: 0 8px 16px rgba(0,0,0,0.2);overflow: hidden;}
+.perfume-bottle {position: absolute;width: 60px;height: 150px;animation: floatBottle 4s ease-in-out infinite;z-index: 0;}
+.bottle-neck {width: 20px;height: 30px;background: #8B4513;border-radius: 5px 5px 0 0;position: absolute;top: 0;left: 20px;box-shadow: inset 0 0 3px #000;}
+.bottle-body {width: 60px;height: 100px;background: linear-gradient(135deg, #ff9a9e, #fad0c4);border-radius: 30px 30px 10px 10px;position: absolute;top: 30px;box-shadow: inset 0 0 10px #fff, 0 5px 15px rgba(0,0,0,0.2);}
+.bottle-shine {width: 10px;height: 60px;background: rgba(255,255,255,0.5);border-radius: 5px;position: absolute;top: 40px;left: 10px;transform: rotate(-20deg);}
+@keyframes floatBottle {0% { transform: translateY(0); }50% { transform: translateY(-10px); }100% { transform: translateY(0);}}
+.inquiry-form {position: relative;z-index: 1;}
+.inquiry-form input,.inquiry-form textarea {width: 100%;padding: 12px;margin: 10px 0;border: none;border-radius: 8px;background: #fff;}
+.inquiry-form button {padding: 12px 20px;background: #ff7b00;color: #fff;border: none;border-radius: 8px;cursor: pointer;font-size: 16px;}
+.inquiry-form button:hover {background: #e96a00;}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background: #000;
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: rgba(255,255,255,0.9);
+    position: absolute;
+    top: 80px;
+    right: 30px;
+    width: 200px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    padding: 10px 0;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+  .hamburger {
+    display: flex;
+  }
+}
+
+.sale-banner {
+  width: 100%;
+  background: linear-gradient(45deg, #ff4e50, #f9d423);
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 18px;
+  font-weight: bold;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  animation: pulse 1.5s infinite;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+@keyframes pulse {
+  0% {opacity: 1;}
+  50% {opacity: 0.6;}
+  100% {opacity: 1;}
+}
+
+.navbar {
+  top: 40px; /* shift navbar down because of banner height */
+}
+body {
+  padding-top: 120px; /* adjust padding because of new banner */
+
+</style>
+</head>
+<script>
+function toggleMenu() {
+  const navLinks = document.getElementById('navLinks');
+  navLinks.classList.toggle('active');
+}
+</script>
+<body>
+
+  <div class="sale-banner">
+  SALE IS LIVE — ORDER NOW!
+</div>
+
+<div class="navbar">
+  <a href="index.html" class="logo">
+    <img src="images/logo.png" alt="Logo">
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#home">Home</a></li>
+    <li><a href="Aboutus.html">About Us</a></li> <!-- Aboutus.html file ka direct link -->
+    <li><a href="index.html#products">Our Collection</a></li>
+    <li><a href="Contactus.html">Contact Us</a></li> <!-- Contactus.html file ka direct link -->
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+
+<section id="products">
+  <h2>Our Perfume Collection</h2>
+  <div class="slider-container">
+    <div class="left-panel">
+      <div class="thumb active" onclick="showProduct(0)"><img src="images/1.jpg" alt=""></div>
+      <div class="thumb" onclick="showProduct(1)"><img src="images/2.jpg" alt=""></div>
+      <div class="thumb" onclick="showProduct(2)"><img src="images/3.jpg" alt=""></div>
+      <div class="thumb" onclick="showProduct(3)"><img src="images/4.jpg" alt=""></div>
+      <div class="thumb" onclick="showProduct(4)"><img src="images/5.jpg" alt=""></div>
+    </div>
+    <div class="right-panel">
+      <img id="main-img" src="images/1.jpg" alt="">
+      <div class="info">
+        <h2 id="pname">Royal Oud</h2>
+        <p id="pdesc">Agarwood & spices for elegant evenings.</p>
+        <span id="pprice">₹2999</span>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="about">
+  <h2>About Us</h2>
+  <p>Welcome to Javik Handicrafts — where tradition meets luxury. We offer premium handcrafted perfumes inspired by the pure essence of nature. Each fragrance is carefully blended using rare floral extracts, exotic spices, and precious oils to create a scent that leaves a lasting impression. Our mission is to revive the age-old art of Ittra making while embracing modern sophistication. From rich Oud to delicate floral notes, every bottle reflects craftsmanship, purity, and passion. Experience a fragrance journey that transforms everyday moments into memorable sensations.</p>
+</section>
+<section id="testimonials">
+  <h2>What Our Clients Say</h2>
+  <div class="testimonial-container">
+    <div class="testimonial-box">
+      <p>"Amazing fragrances and top-notch quality! Highly recommended."</p>
+      <h3>Ishaan Sharma</h3>
+      <span>Industrial Mining Services</span>
+    </div>
+    <div class="testimonial-box">
+      <p>"Their customer service is fantastic. The perfume lasts all day!"</p>
+      <h3>Jaivik Sharma</h3>
+      <span>Makfin Marketing Services</span>
+    </div>
+    <div class="testimonial-box">
+      <p>"Affordable luxury with premium quality. Loved every bottle!"</p>
+      <h3>Abhishek Sharma</h3>
+      <span>Your Company Name</span>
+    </div>
+  </div>
+</section>
+<section id="quick-inquiry">
+  <h2>Quick Inquiry</h2>
+  <div class="inquiry-container">
+    <div class="perfume-bottle" style="top:10px; left:10px;">
+      <div class="bottle-neck"></div>
+      <div class="bottle-body"></div>
+      <div class="bottle-shine"></div>
+    </div>
+    <div class="perfume-bottle" style="top:20px; right:10px;">
+      <div class="bottle-neck"></div>
+      <div class="bottle-body"></div>
+      <div class="bottle-shine"></div>
+    </div>
+    <form action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT" method="POST" class="inquiry-form">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="text" name="subject" placeholder="Subject" required>
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+<footer>
+  <p>&copy; 2025 Javik Handicrafts. All rights reserved.</p>
+</footer>
+<script>
+const products = [
+  {img:'images/1.jpg', name:'Royal Oud', desc:'Agarwood & spices for elegant evenings.', price:'₹2999'},
+  {img:'images/2.jpg', name:'Floral Bliss', desc:'Rose & jasmine for daily freshness.', price:'₹2499'},
+  {img:'images/3.jpg', name:'Mystic Amber', desc:'Amber & musk to leave a lasting trail.', price:'₹3199'},
+  {img:'images/4.jpg', name:'Floral Bliss', desc:'Rose & jasmine for daily freshness.', price:'₹2499'},
+  {img:'images/5.jpg', name:'Floral Bliss', desc:'Rose & jasmine for daily freshness.', price:'₹2499'},
+];
+function showProduct(index) {
+  document.getElementById('main-img').src = products[index].img;
+  document.getElementById('pname').textContent = products[index].name;
+  document.getElementById('pdesc').textContent = products[index].desc;
+  document.getElementById('pprice').textContent = products[index].price;
+  document.querySelectorAll('.thumb').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.thumb')[index].classList.add('active');
+}
+</script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init({ duration: 1000, offset: 200 });</script>
+</body>
+</html>
